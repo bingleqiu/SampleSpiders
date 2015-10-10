@@ -18,8 +18,9 @@ public class RetrivePageTest extends TestCase {
 			
 			RetrivePage page = new RetrivePage();
 //			page.setProxy(proxyhost, porxyport);
-			int status = page.downloadPage(path);
-			assertEquals(200,status,0);
+			URL retUrl =  page.downloadPage(path);
+			assertEquals(200,retUrl.getStatusCode(),0);
+			System.out.print(retUrl.getResponseBody());
 			
 		} catch (HttpException e) {
 			// TODO Auto-generated catch block

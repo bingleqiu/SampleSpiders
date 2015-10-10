@@ -24,7 +24,9 @@ public class RetrivePage {
 	}
 	
 	// Download Page
-	public int downloadPage(String path) throws HttpException, IOException	{
+	public URL downloadPage(String path) throws HttpException, IOException	{
+		
+		URL retUrl = new URL();
 				
 		GetMethod getMethod = new GetMethod(path);
 		
@@ -34,11 +36,13 @@ public class RetrivePage {
 		// Get response body
 		String respBody = getMethod.getResponseBodyAsString();
 		
-		System.out.print(respBody);
+		// Save result
+		retUrl.setStatusCode(statusCode);
+		retUrl.setResponseBody(respBody);
 		
 		// Release connection
 		getMethod.releaseConnection();
 		
-		return statusCode;
+		return retUrl;
 	}
 }
